@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:spotify/common/helpers/is_dark_mode.dart';
 
-class BasicAppBar extends StatelessWidget {
+class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {
   const BasicAppBar({super.key});
 
   @override
@@ -31,4 +31,7 @@ class BasicAppBar extends StatelessWidget {
       ),
     );
   }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
