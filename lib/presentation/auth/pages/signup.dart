@@ -85,7 +85,7 @@ class SignupPage extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
+          const Text(
             "Do you have an account?",
             style: TextStyle(
               fontSize: 14,
