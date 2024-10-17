@@ -27,7 +27,8 @@ class AuthFirebaseServiceImpl implements AuthFirebaseService {
       });
       return Right("Signup successfull");
     } on FirebaseAuthException catch (e) {
-      String message = "";
+      String message = e.toString();
+      print(message);
       if (e.code == 'weak-password') {
         message = "Password is too weak";
       } else if (e.code == 'email-already-in-use') {
