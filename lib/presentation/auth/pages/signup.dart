@@ -28,7 +28,7 @@ class SignupPage extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: _signinText(context),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(vertical: 50.0, horizontal: 30.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
