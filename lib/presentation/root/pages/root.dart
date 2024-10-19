@@ -1,12 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:spotify/common/helpers/is_dark_mode.dart';
 import 'package:spotify/core/configs/assets/app_images.dart';
+import 'package:spotify/core/configs/theme/app_colors.dart';
 
 import '../../../common/widgets/appbar/appbar.dart';
 import '../../../core/configs/assets/app_vectors.dart';
 
-class RootPage extends StatelessWidget {
+class RootPage extends StatefulWidget {
   const RootPage({super.key});
+
+  @override
+  State<RootPage> createState() => _RootPageState();
+}
+
+class _RootPageState extends State<RootPage>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+  @override
+  void initState() {
+    _tabController = TabController(length: 4, vsync: this);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +39,7 @@ class RootPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             _topCard(),
+            _tabs(),
           ],
         ),
       ),
@@ -50,6 +66,36 @@ class RootPage extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Widget _tabs() {
+    return TabBar(
+      controller: _tabController,
+      indicatorColor: AppColors.primary,
+      isScrollable: true,
+      tabAlignment: TabAlignment.center,
+      dividerHeight: 0,
+      labelColor: context.isDarkMode ? Colors.white : Colors.black,
+      padding: EdgeInsets.symmetric(vertical: 36),
+      tabs: const [
+        Text(
+          "News",
+          style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
+        ),
+        Text(
+          "Videos",
+          style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
+        ),
+        Text(
+          "Artists",
+          style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
+        ),
+        Text(
+          "Podcasts",
+          style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
+        ),
+      ],
     );
   }
 }
