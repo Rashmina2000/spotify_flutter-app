@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:spotify/common/helpers/is_dark_mode.dart';
 import 'package:spotify/core/configs/assets/app_images.dart';
 import 'package:spotify/core/configs/theme/app_colors.dart';
+import 'package:spotify/presentation/root/widgets/news_songs.dart';
 
 import '../../../common/widgets/appbar/appbar.dart';
 import '../../../core/configs/assets/app_vectors.dart';
@@ -40,6 +41,18 @@ class _RootPageState extends State<RootPage>
           children: [
             _topCard(),
             _tabs(),
+            SizedBox(
+              height: 260,
+              child: TabBarView(
+                children: [
+                  NewsSongs(),
+                  Container(),
+                  Container(),
+                  Container(),
+                ],
+                controller: _tabController,
+              ),
+            )
           ],
         ),
       ),
