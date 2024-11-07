@@ -69,7 +69,9 @@ class PlayList extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (BuildContext context) => SongPlayerPage(),
+                  builder: (BuildContext context) => SongPlayerPage(
+                    songEntity: songs[index],
+                  ),
                 ),
               );
             },
@@ -127,8 +129,9 @@ class PlayList extends StatelessWidget {
                     IconButton(
                       onPressed: () {},
                       icon: Icon(
-                        Icons.favorite_rounded,
+                        Icons.favorite_outline_outlined,
                         color: AppColors.darkGrey,
+                        size: 25,
                       ),
                     ),
                   ],
