@@ -121,11 +121,50 @@ class SongPlayerPage extends StatelessWidget {
                     .toDouble(),
                 onChanged: (value) {},
               ),
+              SizedBox(height: 5),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    durationFormat(
+                        context.read<SongPlayerCubit>().songPosition),
+                  ),
+                  Text(
+                    durationFormat(
+                        context.read<SongPlayerCubit>().songDuration),
+                  ),
+                ],
+              ),
+              SizedBox(height: 15),
+              GestureDetector(
+                onTap: () {
+                  context.read<SongPlayerCubit>().playOrPauseSong();
+                },
+                child: Container(
+                  height: 60,
+                  width: 60,
+                  child: Icon(
+                    context.read<SongPlayerCubit>().audioPlayer.playing
+                        ? Icons.pause
+                        : Icons.play_arrow,
+                  ),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: AppColors.primary,
+                  ),
+                ),
+              ),
             ],
           );
         }
         return Container();
       },
     );
+  }
+
+  String durationFormat(Duration duration) {
+    final minutes = duration.inMinutes.remainder(60);
+    final seconds = duration.inSeconds.remainder(60);
+    return '${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}';
   }
 }
