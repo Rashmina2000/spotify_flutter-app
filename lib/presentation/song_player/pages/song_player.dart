@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spotify/common/widgets/appbar/appbar.dart';
 import 'package:spotify/domain/entities/song/song.dart';
+import 'package:spotify/presentation/song_player/bloc/song_player_cubit.dart';
+import 'package:spotify/presentation/song_player/bloc/song_player_state.dart';
 
 import '../../../core/configs/constants/app_urls.dart';
 import '../../../core/configs/theme/app_colors.dart';
@@ -22,14 +25,23 @@ class SongPlayerPage extends StatelessWidget {
           icon: Icon(Icons.more_vert_rounded),
         ),
       ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-        child: Column(
-          children: [
-            _songCover(context),
-            SizedBox(height: 20),
-            _songDetail(),
-          ],
+      body: BlocProvider(
+        create: (_) => SongPlayerCubit()
+          ..loadSong(
+              '${AppURLs.songFirestorage}${songEntity.artist} - ${songEntity.title}.mp3?alt=media'),
+        child: SingleChildScrollView(
+          padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+          child: Column(
+            children: [
+              _songCover(context),
+              SizedBox(height: 20),
+              _songDetail(),
+              SizedBox(
+                height: 30,
+              ),
+              _songPlayer(),
+            ],
+          ),
         ),
       ),
     );
@@ -83,6 +95,37 @@ class SongPlayerPage extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+
+  Widget _songPlayer() {
+    return BlocBuilder<SongPlayerCubit, SongPlayerState>(
+      builder: (context, state) {
+        if (state is SongPlayerLoading) {
+          return CircularProgressIndicator();
+        }
+        if (state is SongPlayerLoaded) {
+          return Column(
+            children: [
+              Slider(
+                value: context
+                    .read<SongPlayerCubit>()
+                    .songPosition
+                    .inSeconds
+                    .toDouble(),
+                min: 0.0,
+                max: context
+                    .read<SongPlayerCubit>()
+                    .songDuration
+                    .inSeconds
+                    .toDouble(),
+                onChanged: (value) {},
+              ),
+            ],
+          );
+        }
+        return Container();
+      },
     );
   }
 }
