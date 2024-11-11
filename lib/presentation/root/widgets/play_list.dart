@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spotify/common/helpers/is_dark_mode.dart';
+import 'package:spotify/common/widgets/favourite_button/favourite_button.dart';
 import 'package:spotify/domain/entities/song/song.dart';
 import 'package:spotify/presentation/root/bloc/play_list_cubit.dart';
 import 'package:spotify/presentation/root/bloc/play_list_state.dart';
@@ -126,14 +127,7 @@ class PlayList extends StatelessWidget {
                     SizedBox(
                       width: 20,
                     ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.favorite_outline_outlined,
-                        color: AppColors.darkGrey,
-                        size: 25,
-                      ),
-                    ),
+                    FavouriteButton(songEntity: songs[index]),
                   ],
                 ),
               ],
