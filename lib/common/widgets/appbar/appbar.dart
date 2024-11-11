@@ -5,13 +5,18 @@ class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? title;
   final Widget? action;
   final bool hideBackButton;
+  final Color? backgroundColor;
   const BasicAppBar(
-      {this.title, this.action, this.hideBackButton = false, super.key});
+      {this.title,
+      this.action,
+      this.hideBackButton = false,
+      this.backgroundColor,
+      super.key});
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.transparent,
+      backgroundColor: backgroundColor ?? Colors.transparent,
       title: title ?? const Text(""),
       actions: [action ?? Container()],
       centerTitle: true,

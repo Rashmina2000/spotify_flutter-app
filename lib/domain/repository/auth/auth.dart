@@ -5,4 +5,5 @@ import 'package:spotify/data/models/auth/signin_user_request.dart';
 abstract class AuthRepository {
   Future<Either> signUp(CreateUserRequest createUserReq);
   Future<Either> signIn(SigninUserRequest signinUserReq);
+  Future<Either> getUser();
 }
