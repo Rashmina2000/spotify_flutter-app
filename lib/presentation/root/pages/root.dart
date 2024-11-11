@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:spotify/common/helpers/is_dark_mode.dart';
 import 'package:spotify/core/configs/assets/app_images.dart';
 import 'package:spotify/core/configs/theme/app_colors.dart';
+import 'package:spotify/presentation/profile/pages/profile.dart';
 import 'package:spotify/presentation/root/widgets/news_songs.dart';
 import 'package:spotify/presentation/root/widgets/play_list.dart';
 
@@ -30,6 +31,17 @@ class _RootPageState extends State<RootPage>
     return Scaffold(
       appBar: BasicAppBar(
         hideBackButton: true,
+        action: IconButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => ProfilePage(),
+              ),
+            );
+          },
+          icon: const Icon(Icons.person),
+        ),
         title: SvgPicture.asset(
           AppVectors.logo,
           width: 40,
