@@ -16,14 +16,12 @@ class SongRepositoryImp extends SongRepository {
   }
 
   @override
-  Future<Either> addOrRemoveFavouriteSong(String songId) {
-    // TODO: implement addOrRemoveFavouriteSong
-    throw UnimplementedError();
+  Future<Either> addOrRemoveFavouriteSong(String songId) async {
+    return await sl<SongFirebaseService>().addOrRemoveFavouriteSong(songId);
   }
 
   @override
-  Future<bool> isFavouriteSong(String songId) {
-    // TODO: implement isFavouriteSong
-    throw UnimplementedError();
+  Future<bool> isFavouriteSong(String songId) async {
+    return await sl<SongFirebaseService>().isFavouriteSong(songId);
   }
 }
