@@ -58,6 +58,16 @@ class ProfilePage extends StatelessWidget {
                     ),
                   ),
                 ),
+                const SizedBox(height: 15),
+                Text(state.userEntity.email!),
+                const SizedBox(height: 10),
+                Text(
+                  state.userEntity.fullName!,
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ],
             );
           }
