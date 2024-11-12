@@ -1,10 +1,17 @@
-# spotify
+# Spotify Clone App
 
 A new Flutter project.
 
-## Getting Started
+## Screenshots
+### Dark Mode
+<img src="https://github.com/user-attachments/assets/7ad0ec32-efba-4a44-8de6-23c2026665d9" width="250">
+<img src="https://github.com/user-attachments/assets/7ad0ec32-efba-4a44-8de6-23c2026665d9" width="250">
+<img src="https://github.com/user-attachments/assets/7ad0ec32-efba-4a44-8de6-23c2026665d9" width="250">
+![Screenshot_2](https://github.com/user-attachments/assets/881ada0b-0b8f-48cd-862c-3dd3a9723cec)
 
-This project is a starting point for a Flutter application.
+
+### Light Mode
+
 
 A few resources to get you started if this is your first Flutter project:
 
