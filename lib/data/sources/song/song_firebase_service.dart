@@ -139,6 +139,8 @@ class SongFirebaseServiceImp extends SongFirebaseService {
         var song =
             await firebaseFirestore.collection('songs').doc(songId).get();
         SongModel songModel = SongModel.fromJson(song.data()!);
+        songModel.isFavourite = true;
+        songModel.songId = songId;
         favouriteSongs.add(songModel.toEntity());
       }
       return Right(favouriteSongs);

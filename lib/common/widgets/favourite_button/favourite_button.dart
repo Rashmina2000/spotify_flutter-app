@@ -8,7 +8,8 @@ import '../../../core/configs/theme/app_colors.dart';
 
 class FavouriteButton extends StatelessWidget {
   final SongEntity songEntity;
-  const FavouriteButton({super.key, required this.songEntity});
+  final Function? function;
+  const FavouriteButton({super.key, required this.songEntity, this.function});
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +23,9 @@ class FavouriteButton extends StatelessWidget {
                 await context
                     .read<FavoriteButtonCubit>()
                     .favoriteButtonUpdated(songEntity.songId);
+                if (function != null) {
+                  function!();
+                }
               },
               icon: Icon(
                 songEntity.isFavourite

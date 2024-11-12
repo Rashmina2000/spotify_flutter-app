@@ -2,8 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spotify/common/helpers/is_dark_mode.dart';
 import 'package:spotify/common/widgets/appbar/appbar.dart';
+import 'package:spotify/presentation/profile/bloc/favourite_songs_cubit.dart';
+import 'package:spotify/presentation/profile/bloc/favourite_songs_state.dart';
 import 'package:spotify/presentation/profile/bloc/profile_info_cubit.dart';
 import 'package:spotify/presentation/profile/bloc/profile_info_state.dart';
+import 'package:spotify/presentation/song_player/pages/song_player.dart';
+
+import '../../../common/widgets/favourite_button/favourite_button.dart';
+import '../../../core/configs/constants/app_urls.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -16,8 +22,13 @@ class ProfilePage extends StatelessWidget {
         title: Text("Profile"),
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           _profileInfo(context),
+          const SizedBox(
+            height: 30,
+          ),
+          _favouriteSongs(),
         ],
       ),
     );
@@ -76,6 +87,119 @@ class ProfilePage extends StatelessWidget {
           }
           return Container();
         }),
+      ),
+    );
+  }
+
+  Widget _favouriteSongs() {
+    return BlocProvider(
+      create: (context) => FavoriteSongsCubit()..getFavoriteSongs(),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              "FAVOURITE SONGS",
+            ),
+            const SizedBox(height: 20),
+            BlocBuilder<FavoriteSongsCubit, FavoriteSongsState>(
+              builder: (context, state) {
+                if (state is FavoriteSongsLoading) {
+                  return const CircularProgressIndicator();
+                }
+                if (state is FavoriteSongsLoaded) {
+                  return ListView.separated(
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (BuildContext context) => SongPlayerPage(
+                                songEntity: state.favoriteSongs[index],
+                              ),
+                            ),
+                          );
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Container(
+                                  width: 70,
+                                  height: 70,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    image: DecorationImage(
+                                      image: NetworkImage(
+                                          '${AppURLs.coverFirestorage}${state.favoriteSongs[index].artist} - ${state.favoriteSongs[index].title}.jpg?alt=media'),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(width: 10),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      state.favoriteSongs[index].title,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                    SizedBox(height: 5),
+                                    Text(
+                                      state.favoriteSongs[index].artist,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  state.favoriteSongs[index].duration
+                                      .toString()
+                                      .replaceAll('.', ':'),
+                                ),
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                FavouriteButton(
+                                  key: UniqueKey(),
+                                  songEntity: state.favoriteSongs[index],
+                                  function: () {
+                                    context
+                                        .read<FavoriteSongsCubit>()
+                                        .removeSong(index);
+                                  },
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(height: 20),
+                    itemCount: state.favoriteSongs.length,
+                  );
+                }
+                if (state is FavoriteSongsFailure) {
+                  return const Text("Error try again");
+                }
+                return Container();
+              },
+            )
+          ],
+        ),
       ),
     );
   }
