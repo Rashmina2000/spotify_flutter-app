@@ -1,6 +1,16 @@
 # Spotify Clone App
 
-A new Flutter project.
+Spotify Clone App is a feature-rich music streaming application built using Flutter, designed to provide a seamless and immersive audio experience. The app allows users to sign up and sign in using email authentication, ensuring a personalized and secure music experience.
+
+Key features include:
+
+- <b>User Authentication:</b> Secure sign-up and sign-in with email and password.
+- <b>Music Streaming:</b> Stream a wide range of songs with smooth playback.
+- <b>Favorites List:</b> Users can add songs to their favorites for quick access.
+- <b>Dark Mode & Light Mode:</b> Toggle between dark and light themes for a customized look and feel.
+- <b>Responsive UI:</b> Intuitive and adaptive interface for both mobile and tablet devices.
+
+<br><br>
 
 ## Screenshots
 ### Dark Mode
@@ -25,12 +35,60 @@ A new Flutter project.
 <img src="https://github.com/user-attachments/assets/1c170c41-d48e-492b-b0fd-e6788456bf08" width="250">
 <img src="https://github.com/user-attachments/assets/ac0656f5-e442-465d-81f8-e49d10b92714" width="250">
 
+<br><br>
 
-A few resources to get you started if this is your first Flutter project:
+## Built With
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+* ![Flutter](https://img.shields.io/badge/Flutter-02569B.svg?style=for-the-badge&logo=Flutter&logoColor=white)
+* ![Dart](https://img.shields.io/badge/Dart-0175C2.svg?style=for-the-badge&logo=Dart&logoColor=white)
+* ![Firebase](https://img.shields.io/badge/Firebase-DD2C00.svg?style=for-the-badge&logo=Firebase&logoColor=white)
+<br><br>
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Getting Started
+### 💻 Requirements
+
+- Any Operating System (ie. MacOS X, Linux, Windows)
+- Any IDE with Flutter and Dart SDKs installed (ie. IntelliJ, Android Studio, VSCode etc)
+
+### Installation
+
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/Rashmina2000/spotify_flutter-app.git
+   ```
+2. Navigate into the directory:
+   ```sh
+   cd spotify_flutter-app
+   ```
+3. Get the dependencies:
+   ```sh
+   flutter pub get
+   ```
+4. Run the app:
+   ```sh
+   flutter run
+   ```
+<br>
+
+## Contact
+
+Project Link: [https://github.com/Rashmina2000/spotify_flutter-app.git](https://github.com/Rashmina2000/spotify_flutter-app.git)
+<br><br>
+
+## Acknowledgments
+
+Made with 
+-  [just_audio](https://pub.dev/packages/just_audio)
+    -  just_audio is a feature-rich audio player for Android, iOS, macOS, web, Linux and Windows.
+
+-  [get_it](https://pub.dev/packages/get_it)
+    -  Service Locator for Dart and Flutter projects. It can be used instead of InheritedWidget or Provider to access objects e.g. from your UI.
+
+-  [dartz](https://pub.dev/packages/dartz)
+    -  Functional Programming in Dart. Purify your Dart code using efficient immutable data structures, monads, lenses and other FP tools.
+ 
+-  [path_provider](https://pub.dev/packages/path_provider)
+    -  A Flutter plugin for finding commonly used locations on the filesystem.
+ 
+-  [flutter_svg](https://pub.dev/packages/flutter_svg)
+    -  An SVG rendering and widget library for Flutter, which allows painting and displaying Scalable Vector Graphics 1.1 files.
